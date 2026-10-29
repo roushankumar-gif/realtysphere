@@ -10,19 +10,31 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap"><a class="logo" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="#2e5a45" stroke-width="2"/><path d="M8 21V14l8-5 8 5v7z" fill="#1f3d2f"/></svg>RealtySphere</a>
 <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main"><ul><li><a href="blogs.html">Articles</a></li><li><a href="categories.html">Categories</a></li><li><a href="locations.html">Locations</a></li><li><a href="home-buying.html">Home Buying</a></li><li><a href="investment.html">Investment</a></li><li><a href="news.html">News</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
-<main id="main"><div class="page-head"><div class="wrap"><h1>Local draft editor (demo)</h1></div></div><section class="block"><div class="art">
-<p class="warn"><strong>Demonstration only.</strong> This page has no login and is not secure. Anyone who finds it can open it. Drafts are stored only in this browser (LocalStorage) and are <strong>not published</strong>. To publish, export the JSON, add it to <code>blogs.js</code>, and upload your files. Delete admin.html before going live if you do not want it public.</p>
-<form id="f" onsubmit="return false"><label for="title">Article title</label><input id="title" name="title"><label for="slug">URL slug</label><input id="slug" name="slug" placeholder="my-article-title">
-<label for="excerpt">Excerpt</label><textarea id="excerpt" name="excerpt" style="min-height:80px;font-family:inherit"></textarea>
-<label for="content">Content (HTML: use h2, h3, p, ul)</label><textarea id="content" name="content"></textarea>
+<main id="main"><div class="page-head"><div class="wrap"><h1>Blog block maker</h1><p>Write your blog here. This page makes the text to paste into your files. It does not publish anything.</p></div></div>
+<section class="block"><div class="art">
+<p class="warn"><strong>Not secure, not a CMS.</strong> This page has no login. It only creates text for you to copy. Your blog goes live only after you paste the blocks into <code>blogs.js</code>, <code>sitemap.xml</code> and <code>feed.xml</code> on GitHub and commit. You can delete this page from the live site and use it only on your computer.</p>
+<form id="f" onsubmit="return false">
+<label for="title">Title</label><input id="title" name="title" placeholder="Sector 16 Noida: what to check before you buy">
 <label for="category">Category</label><select id="category" name="category"></select>
-<label for="featuredImage">Featured image path or URL</label><input id="featuredImage" name="featuredImage" placeholder="assets/images/my-article-title.jpg">
-<label for="imageAlt">Image alt text</label><input id="imageAlt" name="imageAlt"><label for="seoTitle">SEO title</label><input id="seoTitle" name="seoTitle">
-<label for="metaDescription">Meta description</label><input id="metaDescription" name="metaDescription">
-<div class="row"><button type="button" id="save" class="btn dark">Save draft</button><button type="button" id="export" class="btn dark">Export article as JSON</button></div>
-<p id="msg" role="status"></p></form><h2>Drafts in this browser</h2><ul id="drafts" class="drafts"></ul></div></section></main>
+<label for="excerpt">Short summary (1-2 lines, shown on the card)</label><textarea id="excerpt" name="excerpt" style="min-height:80px;font-family:inherit"></textarea>
+<label for="content">Blog content</label>
+<div class="row" id="tools" style="margin:0 0 8px"><button type="button" class="chip" data-k="h2">Heading</button><button type="button" class="chip" data-k="h3">Sub-heading</button><button type="button" class="chip" data-k="li">Bullet</button><button type="button" class="chip" data-k="b">Bold</button></div>
+<textarea id="content" name="content" style="min-height:320px;font-family:inherit" placeholder="Write normally. Leave a blank line between paragraphs.&#10;&#10;## Big heading&#10;&#10;### Small heading&#10;&#10;- bullet point"></textarea>
+<label for="slug">URL slug (English letters, auto-filled from title)</label><input id="slug" name="slug" placeholder="my-blog-title">
+<label for="image">Image file name (optional, e.g. my-photo.jpg; upload it to assets/images on GitHub)</label><input id="image" name="image">
+<label for="imageAlt">Image description (optional)</label><input id="imageAlt" name="imageAlt">
+<label for="seoTitle">SEO title (optional)</label><input id="seoTitle" name="seoTitle">
+<label for="metaDescription">Meta description (optional, about 150 characters)</label><input id="metaDescription" name="metaDescription">
+<div class="row"><button type="button" id="make" class="btn dark">Generate blocks</button></div><p id="msg" role="status"></p></form>
+<div id="out" hidden><h2>1. blogs.js</h2><p>GitHub: assets, js, blogs.js, Edit. Press Ctrl + End, put the cursor right after the last <code>}</code> (before <code>];</code>), paste, then Commit.</p>
+<textarea id="o1" readonly style="width:100%;min-height:160px;font:.85rem ui-monospace,Consolas,monospace"></textarea><p><button type="button" class="chip" data-copy="o1">Copy</button></p>
+<h2>2. sitemap.xml</h2><p>Open sitemap.xml, Edit, paste this line just before <code>&lt;/urlset&gt;</code>, Commit.</p>
+<textarea id="o2" readonly style="width:100%;min-height:60px;font:.85rem ui-monospace,Consolas,monospace"></textarea><p><button type="button" class="chip" data-copy="o2">Copy</button></p>
+<h2>3. feed.xml</h2><p>Open feed.xml, Edit, paste this just before <code>&lt;/channel&gt;</code>, Commit.</p>
+<textarea id="o3" readonly style="width:100%;min-height:90px;font:.85rem ui-monospace,Consolas,monospace"></textarea><p><button type="button" class="chip" data-copy="o3">Copy</button></p></div>
+</div></section></main>
 <footer><div class="wrap"><div class="fgrid"><div><h2>RealtySphere</h2><p>An independent real estate blog for clearer property decisions.</p></div>
 <div><h2>Explore</h2><ul><li><a href="blogs.html">All articles</a></li><li><a href="categories.html">Categories</a></li><li><a href="locations.html">Location guides</a></li><li><a href="feed.xml">RSS feed</a></li></ul></div>
-<div><h2>Site</h2><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Local draft editor</a></li></ul></div></div>
+<div><h2>Site</h2><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="admin.html">Blog block maker</a></li></ul></div></div>
 <p class="disc">Disclaimer: RealtySphere publishes general information and research notes. Nothing here is legal, financial or investment advice, or an offer to sell property. Always verify project details on the official RERA portal and consult qualified professionals before you buy.</p></div></footer>
 <script src="assets/js/blogs.js"></script><script src="assets/js/main.js"></script><script src="assets/js/admin.js"></script></body></html>
